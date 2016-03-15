@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+<h1>Application Configuration</h1>
+<p>This page provides links to the main configuration option pages   <p>
+<table id='TabConfig'>
+				<thead>
+					<tr>
+						<th>Link</th>
+                        <th>Description</th>
+                        <th>Link</th> 
+                        <th>Description</th>                  
+                    </tr>
+                </thead>
+                    <tbody>
+<tr>
+<td><a href="{{=URL('shape_setup')}}">Setup Template Shapes</a></td>
+<td>This creates template shapes</td>
+<td><a href="{{=URL('shape_mgmt')}}">Edit Shape Templates</a></td>
+<td>Editing Standard Shapes</td>
+</tr>
+<tr>
+<td><a href="{{=URL('start_setup')}}">Add Default Board</a></td>
+<td>Setup board layout</td>
+<td><a href="{{=URL('start_mgmt')}}">Startup mgmt</a></td>
+<td>Startup Management</td>
+</tr>
+</tbody>
+</table>
+
+

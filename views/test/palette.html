@@ -1,0 +1,234 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+{{from jointjs2py import portangle,linkangle,rectangle,addobjects,newmetlink,initgraph}}
+
+<h1>Welcome to pronto - an alternative route to coding your cubetto.</h1>
+
+<p>This should setup a test palette and it will iterate through the shape palette and stick them on the sheet
+ultimately will be a palette position but this is not required yet
+
+    cells string {{=cellsjson}}
+</p>
+
+<div id="myholder" > </div>
+
+<script>var myJson = {{=XML(cellsjson)}} ;</script>
+
+<script>
+var graph = new joint.dia.Graph;
+
+
+//    interactive: false
+var paper = new joint.dia.Paper({
+    el: $('#myholder'),
+    width: 800,
+    height: 400,
+    model: graph,
+    gridSize: 1
+});
+
+var strcells = '{{=XML(cellsjson)}}' ;
+
+
+//var graphJSON = {cells: [{"type":"basic.Rect","position":{"x":200,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"test","z":1,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}}]};
+
+var graphJSON = '{"cells":' + strcells + '}';
+//cells = [{"type":"basic.Rect","position":{"x":200,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"test","z":1,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}}]
+
+
+//var graphJSON = {"cells":[{"type":"basic.Rect","position":{"x":210,"y":10},"size":{"width":175,"height":50},"angle":0,"id":1,"z":0,"attrs":{"rect":{"fill":"red","data-cell-id":1}}},{"type":"basic.Rect","position":{"x":410,"y":10},"size":{"width":175,"height":50},"angle":0,"id":2,"z":0,"attrs":{"rect":{"fill":"green","data-cell-id":2}}},{"type":"basic.Rect","position":{"x":10,"y":10},"size":{"width":175,"height":50},"angle":0,"id":3,"z":0,"attrs":{"rect":{"fill":"blue","data-cell-id":3}}}]}
+console.log(strcells);
+console.log(graphJSON);
+
+
+var maindbase = new joint.shapes.basic.Path({
+   position: { x: 150, y: 50 },
+   attrs: {
+       path: { d: 'm0 0 L0 200 l10 0 q20 -100 0 -200 z', stroke:'red', fill:'black'  },
+       text: { text: 'Base1', 'ref-y': .5, fill: 'white' },
+          interactive: false
+   }
+
+})
+
+
+
+graph.addCell(maindbase);
+
+paper.findViewByModel(maindbase).options.interactive = false;
+
+var maindbase2 = new joint.shapes.basic.Path({
+   position: { x: 300, y: 50 },
+   attrs: {
+       path: { d: 'm0 0 L0 200 l10 0 q20 -100 0 -200 z', stroke:'red', fill:'black'  },
+       text: { text: 'Base2', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+graph.addCell(maindbase2);
+
+paper.findViewByModel(maindbase2).options.interactive = false;
+
+var maindbase3 = new joint.shapes.basic.Path({
+   position: { x: 450, y: 50 },
+   attrs: {
+       path: { d: 'm0 0 L0 200 l10 0 q20 -100 0 -200 z', stroke:'red', fill:'black'  },
+       text: { text: 'Base3', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+graph.addCell(maindbase3);
+
+paper.findViewByModel(maindbase3).options.interactive = false;
+
+//''M 50 150 l 40 40 q 150 -300 300 0 l -40 -40 z','
+var origarrowleft = new joint.shapes.basic.Path({
+   position: { x: 50, y: 200 },
+   attrs: {
+       path: { d: 'm 0 200  L100 200 L100 100 L50 0 L-50 -50 L-10 -70 L-80 -80 L-120 -20 z', stroke:'red'  },
+       text: { text: 'Forward', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+//'m 0 0 L0 400 L80 400 Q200 380 200 540  L325 630 L450 540 Q450 0 80 0 L0 0
+
+var arrowleft = new joint.shapes.basic.Path({
+   position: { x: 50, y: 150 },
+   attrs: {
+       path: { d: 'm 0 0 L0 385 L80 400 Q200 380 200 560  L350 680 L500 560 Q450 0 80 0 L0 0  ', stroke:'red', fill: 'blue' },
+       text: { text: 'Right', 'ref-y': .45, fill: 'white' }
+   }
+});
+
+
+graph.addCell(arrowleft);
+
+
+var oldforward = new joint.shapes.basic.Path({
+   id: 'pal1',
+   position: { x: 50, y: 50 },
+   attrs: {
+       path: { d: 'm 0 100  L100 100 L100 -100 L50 -150 L0 -100 z ', stroke:'red', fill: 'green' },
+       text: { text: 'Forward', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+var forward = new joint.shapes.basic.Path({
+   id: 'pal1',
+   position: { x: 250, y: 50 },
+   attrs: {
+       path: { d: 'm 0 200  L150 200 L200 100 L150 0 L0 0 z ', stroke:'red', fill: 'green' },
+       text: { text: 'Forward', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+graph.addCell(forward);
+
+var oldarrowright = new joint.shapes.basic.Path({
+   position: { x: 50, y: 150 },
+   attrs: {
+       path: { d: 'm 0 0  l 100 0 -30 70 30 30 -100 0  z ', stroke:'red', fill: 'blue' },
+       text: { text: 'Arrow', 'ref-y': .5, fill: 'white' }
+   }
+});
+
+//m1.attr('.label/text') // 'Model'
+var place = new joint.shapes.basic.Circle({
+    id:'place1',
+    size: { width: 80, height: 80 },
+    position: {x:300, y: 300},
+    attrs: {circle: {fill: 'green', transform: 'translate(0, 0)' }, text: {text:'Function', fill:'white'}}
+        });
+
+graph.addCell(place);
+
+
+//m 0 0 L0 385 L80 400 Q200 380 200 560  L350 680 L500 560 Q450 0 80 0 L0 0
+//so centre of right is at 192 down and left is at 150 righ is -420 -500
+//orig left 'm 0 300  L180 300 Q480 200 400 -40  L300 -80 L200 -40 Q150 50 80 20 L0 20 z '
+var arrowright = new joint.shapes.basic.Path({
+   position: { x: 50, y: 50 },
+   attrs: {
+       path: { d: 'm 0 385  L20 385 Q440 400 500 -140  L350 -270 L200 -140 Q150 50 20 0 L0 0 z ', stroke:'red', fill: 'blue' },
+       text: { text: 'Left', 'ref-y': .6, fill: 'white' }
+   }
+});
+
+graph.addCell(arrowright);
+
+var link1 = new joint.dia.Link({
+    source: { id: maindbase.id },
+    target: { id: maindbase2.id },
+    attrs: ({
+    '.connection': { stroke: 'blue', 'stroke-width': 5 },
+    '.marker-target': { fill: 'yellow', d: 'M 10 0 L 0 5 L 10 10 z' }
+})
+});
+
+
+var link2 = new joint.dia.Link({
+    source: { id: maindbase2.id },
+    target: { id: maindbase3.id }
+});
+
+graph.addCells([link1,link2]);
+
+paper.findViewByModel(link1).options.interactive = false;
+
+paper.findViewByModel(link2).options.interactive = false;
+
+var jsonString = JSON.stringify(graph)
+// ... send jsonString to the server,
+// store it to the localStorage or do whatever you want
+// ... later on
+//graph.fromJSON(JSON.parse(jsonString))
+
+console.log(jsonString);
+//{"cells":[{"type":"basic.Rect","position":{"x":100,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"a9ce8084-89c0-4412-8846-bb9ccc72ef79","z":1,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}},{"type":"basic.Rect","position":{"x":400,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"72efcbbf-c3f1-4dc9-8dcd-5ace512de721","embeds":"","z":2,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}},{"type":"link","source":{"id":"a9ce8084-89c0-4412-8846-bb9ccc72ef79"},"target":{"id":"72efcbbf-c3f1-4dc9-8dcd-5ace512de721"},"id":"eb057a77-ba7b-4971-a65c-5caa15cb99bd","z":3,"attrs":{}}]}
+
+//bbox rect {x: 146, y: 92, width: 60, height: 60, toString: function…} seems to work
+//so this seems to be most of the hard yards if overlaps is not of length 2 then no overlap and
+//we don't add the new element will also need to check the overlap is not with an element on
+//the palette - but we are really getting there - will also need to check if its a palette object
+//and possibly a bit more to do the write back piece later - which will I think be saving the whole
+//model if valid as the palette might change over time so saving whole model makes sense
+
+
+paper.on('cell:pointerup',
+    function(cellView, evt, x, y) {
+
+        alert('cell view ' + cellView.model.id + ' was unclicked at ' + cellView.model.getBBox().x.toString());
+
+        var movedid = cellView.model.id
+        var clickbbox = cellView.model.getBBox()
+        var overlaps = graph.findModelsInArea(clickbbox);
+
+        //So think we check if left3 is pal, position is greater than 100 
+        //and shape overlaps and no other shape already there
+        //alternative is populated shape positioned to not overlap and 
+        //for that plan is just to remove
+        //also need to figure out which slot was filled and centre on that
+        //and maybe assign the id to something depending on the slot
+
+        if (overlaps.length == 2) {
+            var newelement = cellView.model.clone();
+            graph.addCell(newelement);
+        }
+
+        resetpositions();
+        
+
+        console.log(overlaps);
+        }
+
+);
+
+function resetpositions()
+{
+    graph.getCell('pal1').position(50,50);
+    graph.getCell('pal2').position(50,150);
+    graph.getCell('pal3').position(50,250);
+    graph.getCell('pal4').position(50,350);
+};
+
+    </script>

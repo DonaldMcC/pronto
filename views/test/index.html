@@ -1,0 +1,141 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+{{from jointjs2py import portangle,linkangle,rectangle,addobjects,newmetlink,initgraph}}
+
+<h1>Welcome to pronto - an alternative route to coding your cubetto.</h1>
+
+<p>This should setup a test palette and it will iterate through the shape palette and stick them on the sheet
+ultimately will be a palette position but this is not required yet
+
+    cells string {{=cellsjson}}
+</p>
+
+<div id="myholder"> </div>
+
+<script>
+var graph = new joint.dia.Graph;
+
+var paper = new joint.dia.Paper({
+    el: $('#myholder'),
+    width: 600,
+    height: 400,
+    model: graph,
+    gridSize: 1
+});
+
+var strcells = {{=XML(cellsjson)}} ;
+
+
+//var graphJSON = {cells: [{"type":"basic.Rect","position":{"x":200,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"test","z":1,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}}]};
+
+var graphJSON = {cells: strcells};
+//cells = [{"type":"basic.Rect","position":{"x":200,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"test","z":1,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}}]
+
+
+var graphJSON = {"cells":[{"type":"basic.Rect","position":{"x":210,"y":10},"size":{"width":175,"height":50},"angle":0,"id":1,"z":0,"attrs":{"rect":{"fill":"red","data-cell-id":1}}},{"type":"basic.Rect","position":{"x":410,"y":10},"size":{"width":175,"height":50},"angle":0,"id":2,"z":0,"attrs":{"rect":{"fill":"green","data-cell-id":2}}},{"type":"basic.Rect","position":{"x":10,"y":10},"size":{"width":175,"height":50},"angle":0,"id":3,"z":0,"attrs":{"rect":{"fill":"blue","data-cell-id":3}}}]}
+
+//graph.fromJSON(graphJSON);
+
+var rect = new joint.shapes.basic.Rect({
+    position: { x: 100, y: 30 },
+    size: { width: 100, height: 30 },
+    attrs: { rect: { fill: 'blue' }, text: { text: 'my box', fill: 'white' } }
+});
+
+
+var myPath = new joint.shapes.basic.Path({
+    position: { x: 200, y: 50 },
+    size: { width: 60, height: 60 },
+    attrs: {
+        path: { d: 'M25.979,12.896 19.312,12.896 19.312,6.229 12.647,6.229 12.647,12.896 5.979,12.896 5.979,19.562 12.647,19.562 12.647,26.229 19.312,26.229 19.312,19.562 25.979,19.562z'  },
+        text: { text: '[your label - can be empty]' }
+    }
+});
+
+var rhombus = new joint.shapes.basic.Path({
+   size: { width: 70, height: 70 },
+   attrs: {
+       path: { d: 'M 30 0 L 60 30 30 60 0 30 z', fill: 'blue' },
+       text: { text: 'Rhombus', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+//   size: { width: 200, height: 200 },
+
+//''M 50 150 l 40 40 q 150 -300 300 0 l -40 -40 z','
+var maindbase = new joint.shapes.basic.Path({
+   position: { x: 50, y: 150 },
+   attrs: {
+       path: { d: 'm0 0 L0 200 l10 0 q20 -100 0 -200 z', stroke:'red', fill:'black'  },
+       text: { text: 'Dbase', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+graph.addCell(maindbase);
+
+var forward = new joint.shapes.basic.Path({
+   position: { x: 450, y: 150 },
+   attrs: {
+       path: { d: 'm 0 100  L100 100 L100 -100 L50 -150 L0 -100 z ', stroke:'red', fill: 'green' },
+       text: { text: 'Forward', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+graph.addCell(forward);
+
+var arrowright = new joint.shapes.basic.Path({
+   position: { x: 450, y: 350 },
+   attrs: {
+       path: { d: 'm 0 0  l 100 0 -30 70 30 30 -100 0  z ', stroke:'red', fill: 'blue' },
+       text: { text: 'Arrow', 'ref-y': .5, fill: 'white' }
+   }
+})
+
+graph.addCell(arrowright);
+
+graph.addCell(rhombus);
+
+//Diamond
+//path: { d: 'M 30 0 L 60 30 30 60 0 30 z' },
+
+//HEXAGON
+//path: { d: 'M 50 0 L 0 20 0 80 50 100 100 80 100 20 z'}
+//path: { d: 'M 50 0 L 0 20 0 80 50 100 100 80 100 20 z'}
+
+
+var myPath2 = new joint.shapes.basic.Path({
+    position: { x: 250, y: 100 },
+    size: { width: 60, height: 60 },
+    attrs: {
+        path: { d: 'M 50 0 L 0 20 0 80 50 100 100 80 100 20 z'},
+        text: { text: '[your label - can be empty]' }
+    }
+});
+
+//var jImage = new joint.shapes.basic.Image({
+//        size: { width: 50, height: 50 },
+//        attrs: { image: { 'xlink:href': image.src, width: 50, height: 50 } }
+//    });
+
+graph.addCell(myPath2);
+
+var rect2 = rect.clone();
+rect2.translate(300);
+
+var link = new joint.dia.Link({
+    source: { id: rect.id },
+    target: { id: rect2.id }
+});
+
+graph.addCells([rect, rect2, link]);
+
+var jsonString = JSON.stringify(graph)
+// ... send jsonString to the server, 
+// store it to the localStorage or do whatever you want
+// ... later on
+//graph.fromJSON(JSON.parse(jsonString))
+
+console.log(jsonString)
+//{"cells":[{"type":"basic.Rect","position":{"x":100,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"a9ce8084-89c0-4412-8846-bb9ccc72ef79","z":1,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}},{"type":"basic.Rect","position":{"x":400,"y":30},"size":{"width":100,"height":30},"angle":0,"id":"72efcbbf-c3f1-4dc9-8dcd-5ace512de721","embeds":"","z":2,"attrs":{"rect":{"fill":"blue"},"text":{"text":"my box","fill":"white"}}},{"type":"link","source":{"id":"a9ce8084-89c0-4412-8846-bb9ccc72ef79"},"target":{"id":"72efcbbf-c3f1-4dc9-8dcd-5ace512de721"},"id":"eb057a77-ba7b-4971-a65c-5caa15cb99bd","z":3,"attrs":{}}]}
+
+    </script>
