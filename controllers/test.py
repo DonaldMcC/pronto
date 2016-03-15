@@ -16,11 +16,6 @@ def index():
 
     return dict(message=T('Hello World'),cellsjson=cellsjson)
 
-def setup():
-    #This will setup the basic shapes once we can draw them
-
-
-    return dict(message=T('Hello World'),cellsjson=cellsjson)
 
 def palette():
     #This will setup the basic shapes once we can draw them

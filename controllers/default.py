@@ -51,7 +51,6 @@ def shapelist():
     
     mainlist = sentlist[:12]
     funclist = sentlist[12:16]
-    print mainlist
     
     for cmd in mainlist:
         if cmd[:6] == 'objfwd':

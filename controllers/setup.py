@@ -81,7 +81,7 @@ def shape_setup():
                 'cub_action': 'na'}]
 
     db.shape_template.truncate()
-    db.commit
+    db.commit()
 
     for x in shapelist:
         db.shape_template.insert(**x)
@@ -95,7 +95,7 @@ def start_setup():
 
     db.startup.truncate()
     db.startlinks.truncate()
-    db.commit
+    db.commit()
 
 
     fwdid=db(db.shape_template.shape_prefix=='fwd').select().first().id
