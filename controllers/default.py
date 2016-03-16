@@ -9,7 +9,7 @@
 ## - api is an example of Hypermedia API support and access control
 #########################################################################
 
-from pronto_functions import commandlist, sendcommand
+from pronto_functions import commandlist,sendcommand
 
 def index():
     startupshapes = db(db.startup.id>0).select()
