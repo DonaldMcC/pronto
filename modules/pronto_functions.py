@@ -7,9 +7,6 @@
 import serial
 import time
 
-from gluon import *
-
-
 def commandlist(mainblock, functionblock):
     """This combines the mainblock and function block into a single list of commands for
        the cubetto
@@ -42,12 +39,4 @@ def sendcommand(finalblock):
     ser.write(finalblock)
     ser.close()
 
-    return 
-if __name__ == '__main__':
-    # Can run with -v option if you want to confirm tests were run
-    _test()
-
-
-
-
-
+    return
