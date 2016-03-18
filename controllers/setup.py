@@ -28,6 +28,7 @@ def shape_setup():
     fwdjson = r'''new joint.shapes.basic.Path({
    id: '%s',
    position: { x: %d, y: %d },
+   z: 2,
    attrs: {
        path: { d: 'm 3 200  L153 200 L203 100 L153 0 L3 0 z ', stroke:'%s', fill: '%s' },
        text: { text: '%s', 'ref-y': .5, fill: 'white' }}})'''
@@ -35,6 +36,7 @@ def shape_setup():
     leftjson = r'''new joint.shapes.basic.Path({
            id: '%s',
    position: { x: %d, y: %d },
+      z: 2,
    attrs: {
        path: { d: 'm 0 485  L20 485 Q440 500 500 -40  L350 -170 L200 -40 Q150 110 20 100 L0 100 z ', stroke:'%s', fill: '%s'  },
        text: { text: '%s', 'ref-y': .5, fill: 'white' }}})'''
@@ -42,6 +44,7 @@ def shape_setup():
     rightjson = r'''new joint.shapes.basic.Path({
            id: '%s',
    position: { x: %d, y: %d },
+   z: 2,
    attrs: {
        path: { d: 'm 0 110 L0 495 L80 510 Q200 490 200 670  L350 790 L500 670 Q450 110 80 110 L0 110  ', stroke:'%s', fill: '%s' },
        text: { text: '%s', 'ref-y': .5, fill: 'white' }}})'''
@@ -50,11 +53,13 @@ def shape_setup():
     id:'%s',
     size: { width: 70, height: 70 },
     position: {x: %d, y: %d},
+    z: 2,
     attrs: {circle: { stroke:'%s', fill: '%s', transform: 'translate(25, 25)' }, text: {text:'%s', fill:'white'}}})'''
 
     slotjson = r'''new joint.shapes.basic.Path({
            id: '%s',
                     position: { x: %d, y: %d },
+                    z: 2,
                 attrs: {
                 path: { d: 'm0 0 L0 200 l10 0 q20 -100 0 -200 z', stroke:'%s', fill:'%s'  },
                     text: { text: '%s', 'ref-y': .5, fill: 'white' }}})'''
@@ -109,45 +114,45 @@ def start_setup():
 # below could be made much less repetitive - however we may change so just leaving as is for now    
     
     startlist = [
-{'shape_name': 'slt01', 'shape_template': sltid, 'description': 'Slot1', 'posx': 200, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot1'},
-{'shape_name': 'slt02', 'shape_template': sltid, 'description': 'Slot2', 'posx': 380, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot2'},
-{'shape_name': 'slt03', 'shape_template': sltid, 'description': 'Slot3', 'posx': 560, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot3'},
-{'shape_name': 'slt04', 'shape_template': sltid, 'description': 'Slot4', 'posx': 740, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot4'},
-{'shape_name': 'slt05', 'shape_template': sltid, 'description': 'Slot5', 'posx': 740, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot5'},
-{'shape_name': 'slt06', 'shape_template': sltid, 'description': 'Slot6', 'posx': 560, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot6'},
-{'shape_name': 'slt07', 'shape_template': sltid, 'description': 'Slot7', 'posx': 380, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot7'},
-{'shape_name': 'slt08', 'shape_template': sltid, 'description': 'Slot8', 'posx': 200, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot8'},
-{'shape_name': 'slt09', 'shape_template': sltid, 'description': 'Slot9', 'posx': 200, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot9'},
-{'shape_name': 'slt10', 'shape_template': sltid, 'description': 'Slot10', 'posx': 380, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot10'},
-{'shape_name': 'slt11', 'shape_template': sltid, 'description': 'Slot11', 'posx': 560, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot11'},
-{'shape_name': 'slt12', 'shape_template': sltid, 'description': 'Slot12', 'posx': 740, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot12'},
-{'shape_name': 'slt13', 'shape_template': sltid, 'description': 'Slot13', 'posx': 200, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot13'},
-{'shape_name': 'slt14', 'shape_template': sltid, 'description': 'Slot14', 'posx': 380, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot14'},
-{'shape_name': 'slt15', 'shape_template': sltid, 'description': 'Slot15', 'posx': 560, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot15'},
-{'shape_name': 'slt16', 'shape_template': sltid, 'description': 'Slot16', 'posx': 740, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot16'},
-{'shape_name': 'palfwd01', 'shape_template': fwdid, 'description': 'Move Forward', 'posx': 50, 'posy': 40, 'stroke': 5, 'fill': 'red', 'textstring': 'Forward'},
-{'shape_name': 'pallft02', 'shape_template': lftid, 'description': 'Move left', 'posx': 50, 'posy': 140, 'stroke': 5, 'fill': 'yellow', 'textstring': 'Left'},
-{'shape_name': 'palrgt03', 'shape_template': rgtid, 'description': 'Move right', 'posx': 50, 'posy': 240, 'stroke': 5, 'fill': 'blue', 'textstring': 'Right'},
-{'shape_name': 'palfnc04', 'shape_template': fncid, 'description': 'Function', 'posx': 50, 'posy': 340, 'stroke': 5, 'fill': 'green', 'textstring': 'Function'}]
+{'shape_name': 'slt01', 'shape_template': sltid, 'description': 'Slot1', 'posx': 200, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot1', 'zindex': 2},
+{'shape_name': 'slt02', 'shape_template': sltid, 'description': 'Slot2', 'posx': 380, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot2', 'zindex': 2},
+{'shape_name': 'slt03', 'shape_template': sltid, 'description': 'Slot3', 'posx': 560, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot3', 'zindex': 2},
+{'shape_name': 'slt04', 'shape_template': sltid, 'description': 'Slot4', 'posx': 740, 'posy': 40, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot4', 'zindex': 2},
+{'shape_name': 'slt05', 'shape_template': sltid, 'description': 'Slot5', 'posx': 740, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot5', 'zindex': 2},
+{'shape_name': 'slt06', 'shape_template': sltid, 'description': 'Slot6', 'posx': 560, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot6', 'zindex': 2},
+{'shape_name': 'slt07', 'shape_template': sltid, 'description': 'Slot7', 'posx': 380, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot7', 'zindex': 2},
+{'shape_name': 'slt08', 'shape_template': sltid, 'description': 'Slot8', 'posx': 200, 'posy': 140, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot8', 'zindex': 2},
+{'shape_name': 'slt09', 'shape_template': sltid, 'description': 'Slot9', 'posx': 200, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot9', 'zindex': 2},
+{'shape_name': 'slt10', 'shape_template': sltid, 'description': 'Slot10', 'posx': 380, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot10', 'zindex': 2},
+{'shape_name': 'slt11', 'shape_template': sltid, 'description': 'Slot11', 'posx': 560, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot11', 'zindex': 2},
+{'shape_name': 'slt12', 'shape_template': sltid, 'description': 'Slot12', 'posx': 740, 'posy': 240, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot12', 'zindex': 2},
+{'shape_name': 'slt13', 'shape_template': sltid, 'description': 'Slot13', 'posx': 200, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot13', 'zindex': 2},
+{'shape_name': 'slt14', 'shape_template': sltid, 'description': 'Slot14', 'posx': 380, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot14', 'zindex': 2},
+{'shape_name': 'slt15', 'shape_template': sltid, 'description': 'Slot15', 'posx': 560, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot15', 'zindex': 2},
+{'shape_name': 'slt16', 'shape_template': sltid, 'description': 'Slot16', 'posx': 740, 'posy': 340, 'stroke': 5, 'fill': 'black', 'textstring': 'Slot16', 'zindex': 2},
+{'shape_name': 'palfwd01', 'shape_template': fwdid, 'description': 'Move Forward', 'posx': 50, 'posy': 40, 'stroke': 5, 'fill': 'red', 'textstring': 'Forward', 'zindex': 2},
+{'shape_name': 'pallft02', 'shape_template': lftid, 'description': 'Move left', 'posx': 50, 'posy': 140, 'stroke': 5, 'fill': 'yellow', 'textstring': 'Left', 'zindex': 2},
+{'shape_name': 'palrgt03', 'shape_template': rgtid, 'description': 'Move right', 'posx': 50, 'posy': 240, 'stroke': 5, 'fill': 'blue', 'textstring': 'Right', 'zindex': 2},
+{'shape_name': 'palfnc04', 'shape_template': fncid, 'description': 'Function', 'posx': 50, 'posy': 340, 'stroke': 5, 'fill': 'green', 'textstring': 'Function', 'zindex': 2}]
 
     for x in startlist:
         db.startup.insert(**x)
 
 
-    links = [{'shape_name': 'lnk01', 'shape_template': lnkid, 'sourceid': 'slt01', 'targetid': 'slt02'},
-             {'shape_name': 'lnk02', 'shape_template': lnkid, 'sourceid': 'slt02', 'targetid': 'slt03'},
-             {'shape_name': 'lnk03', 'shape_template': lnkid, 'sourceid': 'slt03', 'targetid': 'slt04'},
-             {'shape_name': 'lnk04', 'shape_template': lnkid, 'sourceid': 'slt04', 'targetid': 'slt05'},
-             {'shape_name': 'lnk05', 'shape_template': lnkid, 'sourceid': 'slt05', 'targetid': 'slt06'},
-             {'shape_name': 'lnk06', 'shape_template': lnkid, 'sourceid': 'slt06', 'targetid': 'slt07'},
-             {'shape_name': 'lnk07', 'shape_template': lnkid, 'sourceid': 'slt07', 'targetid': 'slt08'},
-             {'shape_name': 'lnk08', 'shape_template': lnkid, 'sourceid': 'slt08', 'targetid': 'slt09'},
-             {'shape_name': 'lnk09', 'shape_template': lnkid, 'sourceid': 'slt09', 'targetid': 'slt10'},
-             {'shape_name': 'lnk10', 'shape_template': lnkid, 'sourceid': 'slt10', 'targetid': 'slt11'},
-             {'shape_name': 'lnk11', 'shape_template': lnkid, 'sourceid': 'slt11', 'targetid': 'slt12'},
-             {'shape_name': 'lnk13', 'shape_template': lnkid, 'sourceid': 'slt13', 'targetid': 'slt14'},
-             {'shape_name': 'lnk14', 'shape_template': lnkid, 'sourceid': 'slt14', 'targetid': 'slt15'},
-             {'shape_name': 'lnk15', 'shape_template': lnkid, 'sourceid': 'slt15', 'targetid': 'slt16'}]
+    links = [{'shape_name': 'lnk01', 'shape_template': lnkid, 'sourceid': 'slt01', 'targetid': 'slt02', 'zindex': 2},
+             {'shape_name': 'lnk02', 'shape_template': lnkid, 'sourceid': 'slt02', 'targetid': 'slt03', 'zindex': 2},
+             {'shape_name': 'lnk03', 'shape_template': lnkid, 'sourceid': 'slt03', 'targetid': 'slt04', 'zindex': 2},
+             {'shape_name': 'lnk04', 'shape_template': lnkid, 'sourceid': 'slt04', 'targetid': 'slt05', 'zindex': 2},
+             {'shape_name': 'lnk05', 'shape_template': lnkid, 'sourceid': 'slt05', 'targetid': 'slt06', 'zindex': 2},
+             {'shape_name': 'lnk06', 'shape_template': lnkid, 'sourceid': 'slt06', 'targetid': 'slt07', 'zindex': 2},
+             {'shape_name': 'lnk07', 'shape_template': lnkid, 'sourceid': 'slt07', 'targetid': 'slt08', 'zindex': 2},
+             {'shape_name': 'lnk08', 'shape_template': lnkid, 'sourceid': 'slt08', 'targetid': 'slt09', 'zindex': 2},
+             {'shape_name': 'lnk09', 'shape_template': lnkid, 'sourceid': 'slt09', 'targetid': 'slt10', 'zindex': 2},
+             {'shape_name': 'lnk10', 'shape_template': lnkid, 'sourceid': 'slt10', 'targetid': 'slt11', 'zindex': 2},
+             {'shape_name': 'lnk11', 'shape_template': lnkid, 'sourceid': 'slt11', 'targetid': 'slt12', 'zindex': 2},
+             {'shape_name': 'lnk13', 'shape_template': lnkid, 'sourceid': 'slt13', 'targetid': 'slt14', 'zindex': 2},
+             {'shape_name': 'lnk14', 'shape_template': lnkid, 'sourceid': 'slt14', 'targetid': 'slt15', 'zindex': 2},
+             {'shape_name': 'lnk15', 'shape_template': lnkid, 'sourceid': 'slt15', 'targetid': 'slt16', 'zindex': 2}]
 
     for x in links:
         db.startlinks.insert(**x)

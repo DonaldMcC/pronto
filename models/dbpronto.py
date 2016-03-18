@@ -24,13 +24,15 @@ db.define_table('startup',
                 Field('posy', 'integer'),
                 Field('stroke', 'string'),
                 Field('fill', 'string'),
-                Field('textstring', 'string'))
+                Field('textstring', 'string'),
+                 Field('zindex','integer'))
 
 db.define_table('startlinks',
                 Field('shape_name', 'string'),
                 Field('shape_template', 'reference shape_template'),
                 Field('sourceid', 'string'),
-                Field('targetid', 'string'))
+                Field('targetid', 'string'),
+                Field('zindex','integer'))
 
 # So this should actually just be a list of up to 16 objects
 # possibly change to list:reference
