@@ -92,7 +92,9 @@ def teststring():
     return dict(teststring=teststring)
     
 def serialport():
-    grid = SQLFORM.grid(db.serialport)
+    if db(db.serialport.id > 0).isempty():
+        db.serialport.insert()
+    grid = SQLFORM.grid(db.serialport, create=False, deletable=False, searchable=False, csv=False, user_signature=False)
     return dict(grid=grid) 
     
     

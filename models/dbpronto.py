@@ -43,3 +43,10 @@ db.define_table('program',
                 Field('shape_list', 'list:integer'),
                 Field('description', 'text'),
                 Field('userid', 'reference auth_user'))
+                
+db.define_table('serialport',
+                Field('routinename', 'string', default='/dev/ttyUSB0'),
+                Field('baud', 'integer', default=9600),
+                Field('paritey', 'string', default='None'),
+                Field('stopbits', 'integer', default=1))
+

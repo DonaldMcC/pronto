@@ -2,6 +2,8 @@
 #also initial setup function to load the default template
 
 def index():
+    if db(db.serialport.id > 0).isempty():
+        db.serialport.insert()
     return locals()
 
 def shape_mgmt():
@@ -9,11 +11,11 @@ def shape_mgmt():
     return locals()
 
 def start_mgmt():
-    grid = SQLFORM.grid(db.startup, orderby=[db.startup.shape_name])
+    grid = SQLFORM.grid(db.startup, orderby=[db.startup.shape_name],user_signature=False)
     return locals()
 
 def program_mgmt():
-    grid = SQLFORM.grid(db.program, orderby=[db.program.routine_name])
+    grid = SQLFORM.grid(db.program, orderby=[db.program.routine_name],user_signature=False)
     return locals()
 
 def shape_setup():

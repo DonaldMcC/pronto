@@ -24,5 +24,6 @@ response.google_analytics_id = None
 response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
     (T('Setup'), False, URL('setup', 'index'), []),
+    (T('Serial Port'), False, URL('default', 'serialport'), []),
     (T('Advanced'), False, URL('default', 'index', args='advanced'), []),
 ]
