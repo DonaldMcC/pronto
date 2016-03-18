@@ -31,6 +31,12 @@
 
 
 <script>
+//polyfill for chrome 48
+SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(toElement) {
+    return toElement.getScreenCTM().inverse().multiply(this.getScreenCTM());
+};
+
+
 var graph = new joint.dia.Graph;
 
 var paper = new joint.dia.Paper({
