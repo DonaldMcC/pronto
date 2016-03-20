@@ -78,7 +78,6 @@ def shapelist():
     finalblock = commandlist(mainstring, funcstring)
 
     sendcommand(finalblock)
-    
 
     return finalblock
 
