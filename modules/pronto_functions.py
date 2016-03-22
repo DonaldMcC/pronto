@@ -35,8 +35,11 @@ def sendcommand(finalblock):
     port='/dev/ttyUSB0', baudrate=9600)
 
     ser.isOpen()
-    time.sleep(2)    
-    ser.write(finalblock)
+    time.sleep(1)  
+    for x in finalblock:
+        ser.write(x)
+        time.sleep(0.5)
+        
     ser.close()
 
     return
