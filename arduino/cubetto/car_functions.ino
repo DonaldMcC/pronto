@@ -44,7 +44,7 @@ void backward(int speed, int steps) {
   analogWrite(leftReverse, speed);
 
 
-  while (counterL <= steps && counterR <= steps) {
+  while (counterL <= steps || counterR <= steps) {
     if (counterL <= steps) {
       vL = digitalRead(leftEncoder);
       if (vL != pvL) counterL++;
