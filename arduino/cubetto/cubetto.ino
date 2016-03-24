@@ -16,21 +16,10 @@ Load this into Cubetto, the little cube robot.
 #define INIT 'I'
 
 //standard setup
-/*
 #define LEFT 'L'
 #define RIGHT 'R'
 #define FORWARD 'F'
 #define BACKWARD 'B'
-*/
-
-//stuck the front on the back setup
-//comment below out and uncoment section above if you 
-//haven;t
-#define LEFT 'R'
-#define RIGHT 'L'
-#define FORWARD 'B'
-#define BACKWARD 'F'
-
 
 
 //left motor
@@ -40,7 +29,7 @@ const int leftReverse = 11;
 
 //right motor
 const int rightEnable = 12;
-const int rightForward = 5;
+const int rightForward = 5;  //change from std as pin not avail
 const int rightReverse = 9;
 
 //encoders
@@ -75,7 +64,7 @@ void setup() {
 
 void loop() {
 
-  //read rom the xbee
+  //read from the xbee
   if (Serial.available() > 0) {
     instruction = Serial.read();
   }
@@ -85,13 +74,11 @@ void loop() {
 
     case FORWARD:
       initialize();
-      digitalWrite(11, HIGH);
       forward(128, 16);
       break;
       
     case BACKWARD:
       initialize();
-      digitalWrite(11, HIGH);
       backward(128, 16);
       break;
 

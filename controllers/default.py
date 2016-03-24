@@ -41,10 +41,7 @@ def index():
     return dict(cellsjson=XML(cellsjson), slotarray=XML(slotarray), linkarray=XML(linkarray), palarray=XML(palarray))
 
 def shapelist():
-    #This currently just mirrors back the list of shapes to the web-page
-    #but in future will need to process these and send instructions to the cubetto
-    
-    #objfwd01,objlft02,objrgt03,objfnc04,e,e,e,e,e,e,e,e,objrgt13,objlft14,objfwd15,e
+
     sentlist = request.vars.stringarray.split(',')
     mainstring=''
     funcstring=''
@@ -76,8 +73,22 @@ def shapelist():
     
     
     finalblock = commandlist(mainstring, funcstring)
+    invert = False
+    if invert:
+        reverseblock = ''
+        for x in finalblock:
+            if x == 'F':
+                reverseblock+='B'
+            elif x == 'R':
+                reverseblock+='L'
+            elif x == 'L':
+                reverseblock+='R'
+            elif x == 'B':
+                reverseblock+='F'
+        finalblock=reverseblock        
 
-    sendcommand(finalblock)
+    serialsetup = db(db.serialport.id > 0).select().first()    
+    sendcommand(finalblock, serialsetup.routinename, serialsetup.baud)
 
     return finalblock
 

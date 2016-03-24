@@ -12,7 +12,6 @@ void initialize() {
   while (digitalRead(leftEncoder) == vl);
 
   stopLeft();
-
   delay(100);
 
   int vr = digitalRead(rightEncoder);
@@ -22,13 +21,11 @@ void initialize() {
   digitalWrite(rightReverse, LOW);
 
   while (digitalRead(rightEncoder) == vr);
-
   stopRight();
 }
 
 /* MOTION FUNCTIONS */
 
-//not used
 void backward(int speed, int steps) {
   int vL, pvL = 0;
   int vR, pvR = 0;
@@ -50,10 +47,16 @@ void backward(int speed, int steps) {
       if (vL != pvL) counterL++;
       pvL = vL;
     }
+    else  {
+    stopLeft();
+    }
     if (counterR <= steps) {
       vR = digitalRead(rightEncoder);
       if (vR != pvR) counterR++;
       pvR = vR;
+    }
+    else  {
+    stopRight();
     }
   }
 
@@ -81,10 +84,16 @@ void forward(int speed, int steps) {
       if (vL != pvL) counterL++;
       pvL = vL;
     }
+    else  {
+    stopLeft();
+    }
     if (counterR <= steps) {
       vR = digitalRead(rightEncoder);
       if (vR != pvR) counterR++;
       pvR = vR;
+    }
+    else  {
+    stopRight();
     }
   }
 
@@ -112,10 +121,16 @@ void left(int speed, int steps) {
       if (vL != pvL) counterL++;
       pvL = vL;
     }
+    else  {
+    stopLeft();
+    }
     if (counterR <= steps) {
       vR = digitalRead(rightEncoder);
       if (vR != pvR) counterR++;
       pvR = vR;
+    }
+    else  {
+    stopRight();
     }
   }
 
@@ -147,13 +162,18 @@ void right(int speed, int steps) {
       if (vL != pvL) counterL++;
       pvL = vL;
     }
+    else  {
+    stopLeft();
+    }
     if (counterR <= steps) {
       vR = digitalRead(rightEncoder);
       if (vR != pvR) counterR++;
       pvR = vR;
     }
+    else  {
+    stopRight();
+    }
   }
-
   stop();
 }
 

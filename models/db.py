@@ -16,6 +16,7 @@ db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
 response.generic_patterns = ['*'] if request.is_local else []
 
 from gluon.tools import Auth, Service, PluginManager
+from gluon import current
 
 auth = Auth(db)
 service = Service()

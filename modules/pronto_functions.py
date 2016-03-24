@@ -29,11 +29,11 @@ def commandlist(mainblock, functionblock):
         
     return finalblock
 
-def sendcommand(finalblock):
-    #TO DO pick-up serial port settings from serial port once working
-    ser = serial.Serial(
-    port='/dev/ttyUSB0', baudrate=9600)
-
+def sendcommand(finalblock, port, baudrate):
+    
+    #ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
+    ser = serial.Serial(port=port, baudrate=baudrate)
+    
     ser.isOpen()
     time.sleep(1)  
     for x in finalblock:
