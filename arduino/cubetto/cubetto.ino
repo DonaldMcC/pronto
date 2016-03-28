@@ -24,13 +24,13 @@ Load this into Cubetto, the little cube robot.
 
 //left motor
 const int leftEnable = 13;
-const int leftForward = 11;
-const int leftReverse = 10;
+const int leftForward = 10;
+const int leftReverse = 11;
 
 //right motor
 const int rightEnable = 12;
-const int rightForward = 9;  /reverse from std
-const int rightReverse = 5;  //change from std as pin not avail
+const int rightForward = 5;  //reverse from std
+const int rightReverse = 9;  //change from std as pin not avail
 
 //encoders
 const int leftEncoder = A1;
@@ -55,7 +55,9 @@ void setup() {
   //enable motors
   digitalWrite(leftEnable, HIGH);
   digitalWrite(rightEnable, HIGH);
+  
 
+  //testmotors();
   //initialize aligns the wheels
   initialize();
 

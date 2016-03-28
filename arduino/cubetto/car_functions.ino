@@ -1,6 +1,21 @@
 //one wheel is composed of 32 slices
 //16 black and 16 white.
 
+void testmotors() {
+
+  //forward left
+  analogWrite(leftForward, 88);
+  digitalWrite(leftReverse, LOW);
+  delay(2000);
+  stopLeft();
+  delay(2000);
+  analogWrite(rightForward, 88);
+  digitalWrite(rightReverse, LOW);
+  delay(2000);  
+  stopRight();
+}
+
+
 //rotate wheels until the next sign
 void initialize() {
   int vl = digitalRead(leftEncoder);
@@ -30,11 +45,13 @@ void backward(int speed, int steps) {
   int vL, pvL = 0;
   int vR, pvR = 0;
 
-  int counterL, counterR = 0;
+  int counterL = 0, counterR = 0;
 
   //right backward
   digitalWrite(rightForward, LOW);
   analogWrite(rightReverse, speed);
+
+
 
   //left backward
   digitalWrite(leftForward, LOW);
@@ -67,16 +84,16 @@ void forward(int speed, int steps) {
   int vL, pvL = 0;
   int vR, pvR = 0;
 
-  int counterL, counterR = 0;
-
-  //right forward
-  digitalWrite(rightForward, speed);
-  analogWrite(rightReverse, LOW);
+  int counterL = 0, counterR = 0;
 
   //left forward
   digitalWrite(leftForward, speed);
   analogWrite(leftReverse, LOW);
 
+  //right forward
+  digitalWrite(rightForward, speed);
+  analogWrite(rightReverse, LOW);
+  
 
   while (counterL <= steps || counterR <= steps) {
     if (counterL <= steps) {
@@ -84,16 +101,16 @@ void forward(int speed, int steps) {
       if (vL != pvL) counterL++;
       pvL = vL;
     }
-    else  {
-    stopLeft();
+    else {
+      stopLeft();
     }
     if (counterR <= steps) {
       vR = digitalRead(rightEncoder);
       if (vR != pvR) counterR++;
       pvR = vR;
     }
-    else  {
-    stopRight();
+        else {
+      stopRight();
     }
   }
 
@@ -104,7 +121,7 @@ void left(int speed, int steps) {
   int vL, pvL = 0;
   int vR, pvR = 0;
 
-  int counterL, counterR = 0;
+  int counterL = 0, counterR = 0;
 
   //right forward
   digitalWrite(rightForward, speed);
@@ -121,16 +138,16 @@ void left(int speed, int steps) {
       if (vL != pvL) counterL++;
       pvL = vL;
     }
-    else  {
-    stopLeft();
+            else {
+      stopLeft();
     }
     if (counterR <= steps) {
       vR = digitalRead(rightEncoder);
       if (vR != pvR) counterR++;
       pvR = vR;
     }
-    else  {
-    stopRight();
+            else {
+      stopRight();
     }
   }
 
@@ -200,3 +217,4 @@ void hardStop() {
   digitalWrite(rightForward, HIGH);
   digitalWrite(rightReverse, HIGH);
 }
+
