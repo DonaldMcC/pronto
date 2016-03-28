@@ -1,0 +1,14 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,False}}
+{{extend 'layout.html'}}
+
+<h1>Welcome to pronto - an alternative route to coding your cubetto.</h1>
+<p>
+{{if result:}}
+{{for port in result:}}
+{{=port}}
+{{pass}}
+{{else:}}
+No ports available
+{{pass}}
+</p>
+

@@ -25,5 +25,6 @@ response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
     (T('Setup'), False, URL('setup', 'index'), []),
     (T('Serial Port'), False, URL('default', 'serialport'), []),
+    (T('List Ports'), False, URL('default', 'list_ports'), []),
     (T('Advanced'), False, URL('default', 'index', args='advanced'), []),
 ]
