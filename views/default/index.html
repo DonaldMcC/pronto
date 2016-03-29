@@ -1,12 +1,12 @@
 {{left_sidebar_enabled,right_sidebar_enabled=False,False}}
 {{extend 'layout.html'}}
 
-<h1>Welcome to pronto - an alternative route to coding your cubetto.</h1>
+<h1>Welcome to pronto - code your cubetto from your tablet.</h1>
 
 <p>Drag the shapes on the left into the slots on the rest of the virtual interface board.
 </p>
 
-        <p>{{#XML(cellsjson)}}</p>
+ <p>{{#XML(cellsjson)}}</p>
 
 <script>var myJSON = {{=XML(cellsjson)}};
     var slotarray ={{=XML(slotarray)}};
@@ -20,15 +20,6 @@
 <div id="messages"></div>
 
 <input type="hidden" value="Stringarrayworker" name="stringarray" id="stringarray">
-
-<script type="text/javascript">
-  function product(x,y)
-  {
-   return x*y;
-  }
-
- </script>
-
 
 <script>
 //polyfill for chrome 48

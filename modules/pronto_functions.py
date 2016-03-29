@@ -30,8 +30,9 @@ def commandlist(mainblock, functionblock):
     return finalblock
 
 def sendcommand(finalblock, port, baudrate):
-    
-    #ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
+    # This sends the command to the cubetto   
+    # TODO put some try catch and error reporting around this
+
     ser = serial.Serial(port=port, baudrate=baudrate)
     
     ser.isOpen()
