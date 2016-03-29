@@ -29,7 +29,7 @@ const int leftReverse = 11;
 
 //right motor
 const int rightEnable = 12;
-const int rightForward = 5;  //reverse from std
+const int rightForward = 3;  //reverse from std
 const int rightReverse = 9;  //change from std as pin not avail
 
 //encoders

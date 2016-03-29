@@ -32,9 +32,10 @@ void initialize() {
   int vr = digitalRead(rightEncoder);
 
   //forward right
-  analogWrite(rightForward, 88);
   digitalWrite(rightReverse, LOW);
+  analogWrite(rightForward, 88);
 
+  //delay(1000);
   while (digitalRead(rightEncoder) == vr);
   stopRight();
 }
