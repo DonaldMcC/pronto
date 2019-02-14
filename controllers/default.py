@@ -12,7 +12,7 @@
     
 import sys
 import glob
-import serial
+#import serial
 
 from pronto_functions import commandlist,sendcommand
 
@@ -133,12 +133,12 @@ def list_ports():
 
     result = []
     for port in ports:
-        try:
-            s = serial.Serial(port)
-            s.close()
-            result.append(port)
-        except (OSError, serial.SerialException):
-            pass
+        #try:
+        #s = serial.Serial(port)
+        #s.close()
+        #result.append(port)
+        #except (OSError, serial.SerialException):
+        pass
     return dict(result=result)
     
     

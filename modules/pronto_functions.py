@@ -4,7 +4,7 @@
 # - to the cubetto and probably develop the full instruction set and secondly
 # - there should be code to send instructions to the cubetto  
 
-import serial
+
 import time
 
 def commandlist(mainblock, functionblock):
@@ -17,7 +17,7 @@ def commandlist(mainblock, functionblock):
     validcommands = ('F','L','R')  
     functioncommand = 'X'
     finalblock = ''
-    warnings = ''
+    warning = ''
 
     for char in mainblock:
         if char in validcommands:
@@ -33,14 +33,14 @@ def sendcommand(finalblock, port, baudrate):
     # This sends the command to the cubetto   
     # TODO put some try catch and error reporting around this
 
-    ser = serial.Serial(port=port, baudrate=baudrate)
+    #ser = serial.Serial(port=port, baudrate=baudrate)
     
-    ser.isOpen()
+    #ser.isOpen()
     time.sleep(1)  
     for x in finalblock:
-        ser.write(x)
+        #ser.write(x)
         time.sleep(0.5)
         
-    ser.close()
+    #ser.close()
 
     return
