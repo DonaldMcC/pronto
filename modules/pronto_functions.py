@@ -49,22 +49,25 @@ def sendcommand(finalblock, port, baudrate):
         time.sleep(0.5)
         
     #ser.close()
-
     return
 
 
 def sendpicommand(finalblock):
     # This sends the command to pi which has motors attached
-
     time.sleep(1)
     for x in finalblock:
-        # ser.write(x)
-        time.sleep(0.5)
-
-    # ser.close()
-
+        if x == 'F':
+            go_forward()
+        elif x == 'B':
+            go_backward()
+        elif x == 'R':
+            go_right()
+        elif x == 'L':
+            go_left()
+        else:
+            print('An unknown command was attempted')
+        time.sleep(2)
     return
-
 
 
 def turn_off_motors():
@@ -73,9 +76,34 @@ def turn_off_motors():
 
 atexit.register(turn_off_motors)
 
-lm.setSpeed(150)
-rm.setSpeed(150)
+def go_forward(speed=150,time=1):
+    lm.setSpeed(speed)
+    rm.setSpeed(speed)
+    lm.run(Raspi_MotorHAT.FORWARD)
+    rm.run(Raspi_MotorHAT.FORWARD)
+    time.sleep(time)
+    turn_off_motors()
 
-lm.run(Raspi_MotorHAT.FORWARD)
-rm.run(Raspi_MotorHAT.FORWARD)
-time.sleep(1)
+def go_backward(speed=150,time=1):
+    lm.setSpeed(speed)
+    rm.setSpeed(speed)
+    lm.run(Raspi_MotorHAT.BACKWARD)
+    rm.run(Raspi_MotorHAT.BACKWARD)
+    time.sleep(time)
+    turn_off_motors()
+
+def go_left(speed=150,time=1):
+    lm.setSpeed(speed)
+    rm.setSpeed(speed)
+    lm.run(Raspi_MotorHAT.BACKWARD)
+    rm.run(Raspi_MotorHAT.FORWARD)
+    time.sleep(time)
+    turn_off_motors()
+
+def go_right(speed=150,time=1):
+    lm.setSpeed(speed)
+    rm.setSpeed(speed)
+    lm.run(Raspi_MotorHAT.FORWARD)
+    rm.run(Raspi_MotorHAT.BACKWARD)
+    time.sleep(time)
+    turn_off_motors()
