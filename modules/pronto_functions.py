@@ -6,6 +6,13 @@
 
 
 import time
+import atexit
+from Raspi_MotorHAT import Raspi_MotorHAT
+
+mh = Raspi_MotorHAT(addr=0x6f)
+lm = mh.getMotor(1)
+rm = mh.getMotor(2)
+
 
 def commandlist(mainblock, functionblock):
     """This combines the mainblock and function block into a single list of commands for
@@ -44,3 +51,31 @@ def sendcommand(finalblock, port, baudrate):
     #ser.close()
 
     return
+
+
+def sendpicommand(finalblock):
+    # This sends the command to pi which has motors attached
+
+    time.sleep(1)
+    for x in finalblock:
+        # ser.write(x)
+        time.sleep(0.5)
+
+    # ser.close()
+
+    return
+
+
+
+def turn_off_motors():
+    lm.run(Raspi_MotorHAT.RELEASE)
+    rm.run(Raspi_MotorHAT.RELEASE)
+
+atexit.register(turn_off_motors)
+
+lm.setSpeed(150)
+rm.setSpeed(150)
+
+lm.run(Raspi_MotorHAT.FORWARD)
+rm.run(Raspi_MotorHAT.FORWARD)
+time.sleep(1)

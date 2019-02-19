@@ -14,7 +14,7 @@ import sys
 import glob
 #import serial
 
-from pronto_functions import commandlist,sendcommand
+from pronto_functions import commandlist,sendcommand, sendpicommand
 
 def index():
     startupshapes = db(db.startup.id>0).select()
@@ -92,8 +92,9 @@ def shapelist():
                 reverseblock+='F'
         finalblock=reverseblock        
 
-    serialsetup = db(db.serialport.id > 0).select().first()    
-    sendcommand(finalblock, serialsetup.routinename, serialsetup.baud)
+    #serialsetup = db(db.serialport.id > 0).select().first()
+    #sendcommand(finalblock, serialsetup.routinename, serialsetup.baud)
+    sendpicommand(finalblock)
 
     return finalblock
 
