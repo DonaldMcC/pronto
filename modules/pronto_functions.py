@@ -36,11 +36,12 @@ def commandlist(mainblock, functionblock):
         
     return finalblock
 
+
 def sendcommand(finalblock, port, baudrate):
     # This sends the command to the cubetto   
     # TODO put some try catch and error reporting around this
 
-    #ser = serial.Serial(port=port, baudrate=baudrate)
+    # ser = serial.Serial(port=port, baudrate=baudrate)
     
     #ser.isOpen()
     time.sleep(1)  

@@ -14,7 +14,8 @@ import sys
 import glob
 #import serial
 
-from pronto_functions import commandlist,sendcommand, sendpicommand
+from pronto_functions import commandlist, sendcommand, sendpicommand
+
 
 def index():
     startupshapes = db(db.startup.id>0).select()
