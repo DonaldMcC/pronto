@@ -244,9 +244,9 @@ class Raspi_MotorHAT:
     def getStepper(self, steps, num):
         if (num < 1) or (num > 2):
             raise NameError('MotorHAT Stepper must be between 1 and 2 inclusive')
-        return self.steppers[nu m -1]
+        return self.steppers[num -1]
 
     def getMotor(self, num):
         if (num < 1) or (num > 4):
             raise NameError('MotorHAT Motor must be between 1 and 4 inclusive')
-        return self.motors[nu m -1]
+        return self.motors[num -1]
