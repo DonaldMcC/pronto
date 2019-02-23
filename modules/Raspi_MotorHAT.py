@@ -210,7 +210,7 @@ class Raspi_DCMotor:
             speed = 0
         if (speed > 255):
             speed = 255
-        self.MC._pwm.setPWM(self.PWMpin, 0, spee d *16)
+        self.MC._pwm.setPWM(self.PWMpin, 0, speed *16)
 
 class Raspi_MotorHAT:
     FORWARD = 1
