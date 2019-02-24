@@ -10,8 +10,8 @@ import atexit
 from Raspi_MotorHAT import Raspi_MotorHAT
 
 mh = Raspi_MotorHAT(addr=0x6f)
-lm = mh.getMotor(1)
-rm = mh.getMotor(2)
+lm = mh.getMotor(3)
+rm = mh.getMotor(1)
 
 
 def commandlist(mainblock, functionblock):
