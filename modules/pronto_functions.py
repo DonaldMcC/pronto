@@ -77,34 +77,34 @@ def turn_off_motors():
 
 atexit.register(turn_off_motors)
 
-def go_forward(speed=150,time=1):
+def go_forward(speed=150, secs=1):
     lm.setSpeed(speed)
     rm.setSpeed(speed)
     lm.run(Raspi_MotorHAT.FORWARD)
     rm.run(Raspi_MotorHAT.FORWARD)
-    time.sleep(time)
+    time.sleep(secs)
     turn_off_motors()
 
-def go_backward(speed=150,time=1):
+def go_backward(speed=150, secs=1):
     lm.setSpeed(speed)
     rm.setSpeed(speed)
     lm.run(Raspi_MotorHAT.BACKWARD)
     rm.run(Raspi_MotorHAT.BACKWARD)
-    time.sleep(time)
+    time.sleep(secs)
     turn_off_motors()
 
-def go_left(speed=150,time=1):
+def go_left(speed=150, secs=1):
     lm.setSpeed(speed)
     rm.setSpeed(speed)
     lm.run(Raspi_MotorHAT.BACKWARD)
     rm.run(Raspi_MotorHAT.FORWARD)
-    time.sleep(time)
+    time.sleep(secs)
     turn_off_motors()
 
-def go_right(speed=150,time=1):
+def go_right(speed=150, secs=1):
     lm.setSpeed(speed)
     rm.setSpeed(speed)
     lm.run(Raspi_MotorHAT.FORWARD)
     rm.run(Raspi_MotorHAT.BACKWARD)
-    time.sleep(time)
+    time.sleep(secs)
     turn_off_motors()
