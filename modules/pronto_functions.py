@@ -108,4 +108,4 @@ def go_right(speed=150, secs=1):
     rm.run(Raspi_MotorHAT.BACKWARD)
     time.sleep(secs)
     turn_off_motors()
-\\\\\\\\\\\\\\\\\\\\\\\\\
+    
