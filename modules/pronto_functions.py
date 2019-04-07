@@ -78,7 +78,7 @@ def turn_off_motors():
 atexit.register(turn_off_motors)
 
 def go_forward(speed=250, secs=1):
-    rspeed = int(speed * 0.95)
+    rspeed = int(speed * 0.97)
     lm.setSpeed(speed)
     rm.setSpeed(rspeed)
     lm.run(Raspi_MotorHAT.FORWARD)
