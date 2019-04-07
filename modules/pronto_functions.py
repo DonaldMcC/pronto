@@ -67,7 +67,7 @@ def sendpicommand(finalblock):
             go_left()
         else:
             print('An unknown command was attempted')
-        time.sleep(2)
+        time.sleep(1)
     return
 
 
@@ -77,7 +77,7 @@ def turn_off_motors():
 
 atexit.register(turn_off_motors)
 
-def go_forward(speed=150, secs=1):
+def go_forward(speed=250, secs=1):
     lm.setSpeed(speed)
     rm.setSpeed(speed)
     lm.run(Raspi_MotorHAT.FORWARD)
@@ -108,4 +108,3 @@ def go_right(speed=150, secs=1):
     rm.run(Raspi_MotorHAT.BACKWARD)
     time.sleep(secs)
     turn_off_motors()
-    
